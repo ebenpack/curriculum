@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>A Self-Learning, Modern Computer Science Curriculum</title>
-<!-- 2018-02-10 Sat 10:51 -->
+<!-- 2018-02-11 Sun 18:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="jbh" />
@@ -265,7 +265,7 @@ area they often offer this service. Both NYU and Berkeley will accept UoPeople c
 <h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Other Accredited Remote Programs</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
-Open University(OU) in the UK offers Computer Science <a href="http://www.open.ac.uk/courses/qualifications/q62-s">Bachelors</a> to students in the UK/EU and select other regions with testing centers. Other options include <a href="https://csc.uis.edu/program-information">University of Illinois</a>, <a href="https://asuonline.asu.edu/online-degree-programs/undergraduate/bachelor-science-software-engineering">Arizona State</a>, <a href="https://ufonline.ufl.edu/degrees/undergraduate/computer-science/">University of Florida</a>, and the nonprofit <a href="https://www.wgu.edu/online-it-degrees/software-development-bachelors-program.html">Western Governor's University</a> which allows you to audit the material, if you wish to complete the degree faster. 
+<a href="http://www.open.ac.uk/">Open University</a>(OU) in the UK offers Computer Science to students in the UK/EU and select other regions with testing centers. Other options include <a href="https://csc.uis.edu/program-information">University of Illinois</a>, <a href="https://asuonline.asu.edu/online-degree-programs/undergraduate/bachelor-science-software-engineering">Arizona State</a>, <a href="https://ufonline.ufl.edu/degrees/undergraduate/computer-science/">University of Florida</a>, and the nonprofit <a href="https://www.wgu.edu/online-it-degrees/software-development-bachelors-program.html">Western Governor's University</a> which allows you to audit the material, if you wish to complete the degree faster. 
 OU has some excellent Applied Mathematics degrees, such as the <a href="http://www.openuniversity.edu/courses/qualifications/q36">Applied Math w/Statistics</a> BSc(Hons) available to any student worldwide if you want to take mathematics instead, using the material here for your theory of computation interests. Most of the above programs focus on applied software development, which doesn't matter
 as each course can be paired with one of the below recommendations for depth of theory should you wish to apply to a grad school after obtaining an undergrad. If you already have an undergrad degree in a different area, there are numerous online Masters programs available such as Georgia Tech's <a href="https://www.omscs.gatech.edu/current-courses">Computer Science</a> MSc that mirrors most of the material here. 
 </p>
@@ -759,9 +759,13 @@ Abstracting data to model it however you want using advanced SQL with a standard
 <h3 id="sec-4-5"><span class="section-number-3">4.5</span> Meta-Linguistic Abstraction (Optional Elective)</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
-This is optional but recommended to see the possibilities of abstraction you can attain within a language like Scheme (Guile). There's a package manager <a href="http://dustycloud.org/misc/talks/guix/chicagolug_2015/guix_talk.html">Guix</a> and distro GuixSD, which is a GNU implementation of the NixOS <a href="https://nixos.org/~eelco/pubs/phd-thesis.pdf">functional software deployment model</a>. You configure packages, or your entire system with one text file using a declarative DSL, and can create full dependency graphs for exact reproduction on any other system.
-You can create containers that do not require taking large snapshot images to keep track of state. GuixSD uses a scheme init system (GNU Shepherd), which means you get all the advantages of Guile Scheme's libraries/API and can completely abstract your system (or hundreds of servers) as just data to be manipulated in a program if you wanted.     
+This is optional but recommended to see the possibilities of abstraction you can attain within a language like Scheme. There's a package manager <a href="http://dustycloud.org/misc/talks/guix/chicagolug_2015/guix_talk.html">GNU Guix</a> and distro GuixSD, which is a GNU implementation of the NixOS <a href="https://arxiv.org/pdf/1305.4584.pdf">functional software deployment model</a>. Package builds, including entire system builds, are declared using an embedded DSL. Users, all their profile options, pre-installed packages, build options, file system setup and even which services to start are declared in one file and built in a clean container. 
+The resulting software deployment is functional: build inputs go in such as compilers, customizations, environments ect, and a reproducible, immutable build comes out with a hashed identifier.
+This enables transactional upgrades and roll-backs if something goes wrong. If you <a href="https://www.gnu.org/software/guix/manual/html_node/Invoking-guix-publish.html#Invoking-guix-publish">publish</a> your local store (all the immutable packages you have built) then other users can use you as a substitution server to obtain pre-built binaries instead of having to build the same binary themselves. They can verify the build with <a href="https://www.gnu.org/software/guix/manual/html_node/Invoking-guix-challenge.html">guix challenge</a>. This enables a p2p package manager, instead of relying on 
+centralized repositories anybody can publish packages. <a href="https://www.gnu.org/software/guix/blog/2017/reproducible-builds-a-status-update/">Reproducible</a> builds eliminate the use of signatures, TLS and all it's shortcomings. In addition, GuixSD uses a scheme init system (GNU Shepherd), which means you get all the advantages of Guile Scheme's libraries/API and can completely abstract your system (or hundreds of servers) as just data to be manipulated in a program since a full system configuration w/dependency graph can be a first-class Scheme value, a variable can be bound to your configuration and passed around a program. 
+A recent GUixSD feature <a href="https://arxiv.org/pdf/1709.00833.pdf">gexp</a> (g-expressions) enables macros, allowing programmatically configured and maintained systems to be even easier to abstract and automate.   
 </p>
+
 
 <ul class="org-ul">
 <li><a href="http://web.mit.edu/alexmv/6.037/">(Full Course) 6.037 Structure and Interpretation of Computer Programs</a>
@@ -1373,8 +1377,8 @@ Whereas cryptography strives to render data unintelligible to all but the intend
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: jbh</p>
-<p class="date">Created: 2018-02-10 Sat 10:51</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-02-11 Sun 18:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
